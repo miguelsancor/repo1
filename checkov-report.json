@@ -3,55 +3,6 @@
     "results": {
         "passed_checks": [
             {
-                "check_id": "CKV_AWS_41",
-                "bc_check_id": "BC_AWS_SECRETS_5",
-                "check_name": "Ensure no hard coded AWS access key and secret key exists in provider",
-                "check_result": {
-                    "result": "PASSED",
-                    "evaluated_keys": []
-                },
-                "code_block": [
-                    [
-                        1,
-                        "provider \"aws\" {\n"
-                    ],
-                    [
-                        2,
-                        "  region = \"us-east-1\"\n"
-                    ],
-                    [
-                        3,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/unsecured_instance.tf",
-                "file_abs_path": "/home/runner/work/checkov-central/checkov-central/repo1/unsecured_instance.tf",
-                "repo_file_path": "/repo1/unsecured_instance.tf",
-                "file_line_range": [
-                    1,
-                    3
-                ],
-                "resource": "aws.default",
-                "evaluations": null,
-                "check_class": "checkov.terraform.checks.provider.aws.credentials",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/runner/work/checkov-central/checkov-central/repo1/unsecured_instance.tf"
-            },
-            {
                 "check_id": "CKV_AWS_46",
                 "bc_check_id": "BC_AWS_SECRETS_1",
                 "check_name": "Ensure no hard-coded secrets exist in EC2 user data",
@@ -233,6 +184,55 @@
                 "vulnerability_details": null,
                 "connected_node": null,
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-12",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/runner/work/checkov-central/checkov-central/repo1/unsecured_instance.tf"
+            },
+            {
+                "check_id": "CKV_AWS_41",
+                "bc_check_id": "BC_AWS_SECRETS_5",
+                "check_name": "Ensure no hard coded AWS access key and secret key exists in provider",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        1,
+                        "provider \"aws\" {\n"
+                    ],
+                    [
+                        2,
+                        "  region = \"us-east-1\"\n"
+                    ],
+                    [
+                        3,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/unsecured_instance.tf",
+                "file_abs_path": "/home/runner/work/checkov-central/checkov-central/repo1/unsecured_instance.tf",
+                "repo_file_path": "/repo1/unsecured_instance.tf",
+                "file_line_range": [
+                    1,
+                    3
+                ],
+                "resource": "aws.default",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.provider.aws.credentials",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5",
                 "details": [],
                 "check_len": null,
                 "definition_context_file_path": "/home/runner/work/checkov-central/checkov-central/repo1/unsecured_instance.tf"
@@ -1417,123 +1417,6 @@
                 "definition_context_file_path": "/home/runner/work/checkov-central/checkov-central/repo1/weak_security_group.tf"
             },
             {
-                "check_id": "CKV2_AWS_41",
-                "bc_check_id": "BC_AWS_IAM_69",
-                "check_name": "Ensure an IAM role is attached to EC2 instance",
-                "check_result": {
-                    "result": "FAILED",
-                    "entity": {
-                        "aws_instance": {
-                            "unsecured_instance": {
-                                "__end_line__": 17,
-                                "__start_line__": 5,
-                                "ami": [
-                                    "ami-12345678"
-                                ],
-                                "instance_type": [
-                                    "t2.micro"
-                                ],
-                                "tags": [
-                                    {
-                                        "Name": "Unsecured Instance"
-                                    }
-                                ],
-                                "user_data": [
-                                    "#!/bin/bash\necho \"root:password123\" | chpasswd # Vulnerabilidad: Contrase\u00f1a en texto plano"
-                                ],
-                                "__address__": "aws_instance.unsecured_instance",
-                                "__provider_address__": "aws.default"
-                            }
-                        }
-                    },
-                    "evaluated_keys": [
-                        "iam_instance_profile"
-                    ]
-                },
-                "code_block": [
-                    [
-                        5,
-                        "resource \"aws_instance\" \"unsecured_instance\" {\n"
-                    ],
-                    [
-                        6,
-                        "  ami           = \"ami-12345678\"\n"
-                    ],
-                    [
-                        7,
-                        "  instance_type = \"t2.micro\"\n"
-                    ],
-                    [
-                        8,
-                        "\n"
-                    ],
-                    [
-                        9,
-                        "  tags = {\n"
-                    ],
-                    [
-                        10,
-                        "    Name = \"Unsecured Instance\"\n"
-                    ],
-                    [
-                        11,
-                        "  }\n"
-                    ],
-                    [
-                        12,
-                        "\n"
-                    ],
-                    [
-                        13,
-                        "  user_data = <<EOF\n"
-                    ],
-                    [
-                        14,
-                        "#!/bin/bash\n"
-                    ],
-                    [
-                        15,
-                        "echo \"root:password123\" | chpasswd # Vulnerabilidad: Contrase\u00f1a en texto plano\n"
-                    ],
-                    [
-                        16,
-                        "EOF\n"
-                    ],
-                    [
-                        17,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/unsecured_instance.tf",
-                "file_abs_path": "/home/runner/work/checkov-central/checkov-central/repo1/unsecured_instance.tf",
-                "repo_file_path": "/repo1/unsecured_instance.tf",
-                "file_line_range": [
-                    5,
-                    17
-                ],
-                "resource": "aws_instance.unsecured_instance",
-                "evaluations": null,
-                "check_class": "checkov.common.graph.checks_infra.base_check",
-                "fixed_definition": null,
-                "entity_tags": {
-                    "Name": "Unsecured Instance"
-                },
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-an-iam-role-is-attached-to-ec2-instance",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/runner/work/checkov-central/checkov-central/repo1/unsecured_instance.tf"
-            },
-            {
                 "check_id": "CKV2_AWS_5",
                 "bc_check_id": "BC_AWS_NETWORKING_51",
                 "check_name": "Ensure that Security Groups are attached to another resource",
@@ -1599,8 +1482,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "resource_type",
-                        "networking"
+                        "networking",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -1725,6 +1608,123 @@
                 "details": [],
                 "check_len": null,
                 "definition_context_file_path": "/home/runner/work/checkov-central/checkov-central/repo1/weak_security_group.tf"
+            },
+            {
+                "check_id": "CKV2_AWS_41",
+                "bc_check_id": "BC_AWS_IAM_69",
+                "check_name": "Ensure an IAM role is attached to EC2 instance",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_instance": {
+                            "unsecured_instance": {
+                                "__end_line__": 17,
+                                "__start_line__": 5,
+                                "ami": [
+                                    "ami-12345678"
+                                ],
+                                "instance_type": [
+                                    "t2.micro"
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "Unsecured Instance"
+                                    }
+                                ],
+                                "user_data": [
+                                    "#!/bin/bash\necho \"root:password123\" | chpasswd # Vulnerabilidad: Contrase\u00f1a en texto plano"
+                                ],
+                                "__address__": "aws_instance.unsecured_instance",
+                                "__provider_address__": "aws.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "iam_instance_profile"
+                    ]
+                },
+                "code_block": [
+                    [
+                        5,
+                        "resource \"aws_instance\" \"unsecured_instance\" {\n"
+                    ],
+                    [
+                        6,
+                        "  ami           = \"ami-12345678\"\n"
+                    ],
+                    [
+                        7,
+                        "  instance_type = \"t2.micro\"\n"
+                    ],
+                    [
+                        8,
+                        "\n"
+                    ],
+                    [
+                        9,
+                        "  tags = {\n"
+                    ],
+                    [
+                        10,
+                        "    Name = \"Unsecured Instance\"\n"
+                    ],
+                    [
+                        11,
+                        "  }\n"
+                    ],
+                    [
+                        12,
+                        "\n"
+                    ],
+                    [
+                        13,
+                        "  user_data = <<EOF\n"
+                    ],
+                    [
+                        14,
+                        "#!/bin/bash\n"
+                    ],
+                    [
+                        15,
+                        "echo \"root:password123\" | chpasswd # Vulnerabilidad: Contrase\u00f1a en texto plano\n"
+                    ],
+                    [
+                        16,
+                        "EOF\n"
+                    ],
+                    [
+                        17,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/unsecured_instance.tf",
+                "file_abs_path": "/home/runner/work/checkov-central/checkov-central/repo1/unsecured_instance.tf",
+                "repo_file_path": "/repo1/unsecured_instance.tf",
+                "file_line_range": [
+                    5,
+                    17
+                ],
+                "resource": "aws_instance.unsecured_instance",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "Unsecured Instance"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-an-iam-role-is-attached-to-ec2-instance",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/runner/work/checkov-central/checkov-central/repo1/unsecured_instance.tf"
             }
         ],
         "skipped_checks": [],
